@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Главная{% endblock %}</title>
+    <link rel="icon" href="{% static 'app_news\logo.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app_news/style.css' %}">
+</head>
+<body>
+    <div class="pk-top">
+        <div class="header">
+            <h1><I>Школа №12</I></h1>
+            <div class="left">
+                <a href="{% url 'news' %}"><p>Новости</p></a>
+                <a href="{% url 'index' %}"><p>О нас</p></a>
+            </div>
+            <div>
+                <ul>
+                   {% if user.is_authenticated %}
+                     <li>{{ user.get_username }}</li>
+                     <li><a href="">Выйти</a></li>
+                   {% else %}
+                     <li><a href="">Войти</a></li>
+                     <li><a href="">Регистрация</a></li>
+                   {% endif %}
+                  </ul>
+            </div>
+        </div>
+    </div>
+    <div class="space"></div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

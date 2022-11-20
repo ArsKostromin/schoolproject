@@ -1,0 +1,14 @@
+{% extends 'layout/basic.html' %}
+
+{% block content %}
+
+{% for product in product_list %}
+    <div class="info">
+        <h1>{{product}}</h1>
+        <p class="rubric"><a href="">{{product.rubric}}</p></a>
+        <p>{{ product.content }}</p>
+        <img src="{{ product.img }}" alt="Обложка">
+    </div>
+{% endfor %}
+
+{% endblock %}

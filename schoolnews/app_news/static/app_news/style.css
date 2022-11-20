@@ -1,0 +1,116 @@
+
+
+body {
+    background-color: rgb(245, 245, 245);
+    color: #0f141e;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header  {
+    display: flex;
+    align-items: center;
+    min-height: 55px;
+    padding: 0 85px;
+    padding: 0 var(--pinkman-padding-desktop, 85px);
+    background: rgb(255, 255, 255);
+    min-width: 320px;
+    max-width: 1600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    top: 0px;
+    border-bottom: 1px solid #bbbbbb;
+}
+
+header h1 {
+    font-size: 40pt;
+    text-transform: uppercase;
+    text-align: center;
+    font-style: italic;
+    background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/DJCTQ_-_12.svg/1200px-DJCTQ_-_12.svg.png");
+}
+
+.pk-top {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 55px;
+    z-index: 11;
+}
+
+img {
+    width: 400px;
+    border-radius: 28px;
+    margin-right: 40px;
+}
+
+.info {
+    background-color: white;
+    min-width: 320px;
+    max-width: 1550px;
+    margin: auto;
+    padding: 25px;
+}
+
+.info-text {
+    display: flex;
+}
+
+.space {
+    margin-bottom: 80px;
+}
+
+.left {
+    display: flex;
+    margin-left: 1000px;
+    
+}
+
+.left p {
+    margin-left: 20px;
+}
+
+li {
+    list-style-type: none;
+    /* Убираем маркеры */
+  }
+
+
+.rubric {
+    max-width: 480px;
+}
+
+a {
+    color: gold;
+    text-decoration: none;
+}
+
+
+
+.rubric a {
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+  width: 19.5%;
+  margin-right: 0.625%;
+  text-align: center;
+  color: black;
+  border-radius: 28px;
+}
+
+
+
+.rubric a:link, a:visited, a:focus {
+  background: yellow;
+}
+
+.rubric a:hover {
+  background: orange;
+}
+
+.rubric a:active {
+
+  color: white;
+}
