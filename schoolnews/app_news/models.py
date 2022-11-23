@@ -36,6 +36,7 @@ class comment(models.Model):
         User,
         verbose_name="Пользователь",
         on_delete=models.CASCADE)
+    reply = models.ForeignKey('self',related_name=("replies"), on_delete = models.CASCADE , blank= True ,null=True)
     product = models.ForeignKey(Product, related_name='comments')
     body = models.TextField(max_length=120)
     created = models.DateTimeField(auto_now_add=True)
