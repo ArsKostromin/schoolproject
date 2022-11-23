@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Product(models.Model):
@@ -29,3 +30,22 @@ class Rubric(models.Model):
         verbose_name_plural='Рубрики'
         verbose_name='Рубрика'
         ordering=['name']#сортировка по имени 
+
+class comment(models.Model):
+    user = models.ForeignKey(
+        User,
+        verbose_name="Пользователь",
+        on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='comments')
+    body = models.TextField(max_length=120)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return 'Comment by {} on {}'.format(self.user, self.post)
+
+    class Meta:
+        ordering = ('created',)
+
+    
