@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from schoolnews import settings
 
 # Create your models here.
 class Product(models.Model):
@@ -31,22 +32,24 @@ class Rubric(models.Model):
         verbose_name='Рубрика'
         ordering=['name']#сортировка по имени 
 
-class comment(models.Model):
+class Comment(models.Model):
     user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         verbose_name="Пользователь",
         on_delete=models.CASCADE)
     reply = models.ForeignKey('self',related_name=("replies"), on_delete = models.CASCADE , blank= True ,null=True)
-    product = models.ForeignKey(Product, related_name='comments')
+    product = models.ForeignKey(Product, related_name='comments', on_delete=models.CASCADE)
     body = models.TextField(max_length=120)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return 'Comment by {} on {}'.format(self.user, self.post)
+        return 'Comment by {} on {}'.format(self.user, self.product)
 
     class Meta:
+        verbose_name_plural='Новости'
+        verbose_name = 'Новость'
         ordering = ('created',)
 
     
