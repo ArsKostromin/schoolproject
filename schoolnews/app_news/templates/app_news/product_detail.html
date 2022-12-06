@@ -1,0 +1,29 @@
+{% extends 'layout/basic.html' %}
+
+{% block content %}
+<div class="info">
+    <h1>{{product}}</h1>
+    <p class="rubric"><a href="">{{product.rubric}}</p></a>
+    <p>{{ product.content }}</p>
+    <img src="{{ product.img }}" alt="Обложка">
+    <p>{{ product.published }}</p>
+
+    <h3>Комментарий</h3>
+    {% if comments %}
+    Comment{{ comments.count|pluralize }}
+    <span>{{ comments.count }}</span> 
+    {% for comment in comments %}
+    <strong>{{ comment.user }}</strong> said
+    <p>{{ comment.body }}</p>
+    <p><small>{{ comment.created }}</small></p>
+    {% endfor %}
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <span></span>{{ form.body.label_tag }}
+        <textarea class="form-control {% if form.body.errors %}is-invalid{% endif %}" id="id_body"
+        name="body" rows="4">{{ form.body.value|default:'' }}</textarea>
+        <button type="submit">Отправить</button>
+    </form>
+<div>
+{% endblock %}

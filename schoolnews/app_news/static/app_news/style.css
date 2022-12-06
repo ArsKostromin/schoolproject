@@ -24,6 +24,7 @@ body {
 }
 
 header h1 {
+    height: 55px;
     font-size: 40pt;
     text-transform: uppercase;
     text-align: center;
