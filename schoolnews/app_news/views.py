@@ -47,9 +47,9 @@ class ProductDetailView(generic.DetailView):
         context['form'] = form
 
         if form.is_valid():
-            body = form.cleaned_data['content']
-
-            comment = models.Comment.objects.create(body = body,)
+            body = form.cleaned_data[body]
+            user = form.cleaned_data[user]
+            comment = models.Comment.objects.create(body = body, product=product, user=user)
         
             form = CommentForm()
             context['form'] = form 
