@@ -19,12 +19,10 @@
       {% endfor %}
   
   {% endif %}
-    <form method="post">
+    <form method="POST">
       {% csrf_token %}
-      <span></span>{{ form.body.label_tag }}
-      <textarea class="form-control {% if form.body.errors %}is-invalid{% endif %}" id="id_body" 
-        name="body" rows="4">{{ form.body.value|default:'' }}</textarea>
-      <button type="submit">Отправить</button>
+      {{comment_form.as_p}}
+      <button name="comment" type="submit">Отправить</button>
   </form>
 </div>
 {% endblock %}
