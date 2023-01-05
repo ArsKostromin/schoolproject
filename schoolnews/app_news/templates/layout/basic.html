@@ -19,10 +19,10 @@
                 <ul>
                    {% if user.is_authenticated %}
                      <li>{{ user.get_username }}</li>
-                     <li><a href="">Выйти</a></li>
+                     <li><a href="{% url 'logout' %}?next={{ request.path }}">Выйти</a></li>
                    {% else %}
-                     <li><a href="">Войти</a></li>
-                     <li><a href="">Регистрация</a></li>
+                     <li><a href="{% url 'login' %}?next={{ request.path }}">Войти</a></li>
+                     <li><a href="{% url 'signup' %}">Регистрация</a></li>
                    {% endif %}
                   </ul>
             </div>

@@ -4,6 +4,14 @@ from django.views import generic
 from . import models
 from .forms import CommentForm
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+from schoolnews.settings import AUTH_USER_MODEL
+from django.views.generic.edit import FormMixin
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -18,46 +26,34 @@ class ProductListView(generic.ListView):
    
 
 
-class ProductDetailView(generic.DetailView):
+class ProductDetailView(FormMixin, generic.DetailView):
     model = models.Product
+    form_class = CommentForm
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        pk = self.kwargs["pk"]
-        
-        form = CommentForm()
-        product = get_object_or_404(models.Product, pk=pk)
-        comments = product.comments.all()
+    def get_success_url(self):
+        return reverse('detail_product', kwargs={'pk': self.get_object().id})
+        #return reverse_lazy('detail_product', kwargs={'pk':self.get_object().id})
 
-        context['product'] = product
-        context['comments'] = comments
-        context['form'] = form
-        return context
-
-    def product(self, request, *args, **kwargs):
-        form = CommentForm(request.PRODUCT)
-        self.object = self.get_object()
-        context = super().get_context_data(**kwargs)
-
-        product = models.Product.objects.filter(id=self.kwargs['pk'])[0]
-        comments = product.comments.all()
-
-        context['product'] = product
-        context['comments'] = comments
-        context['form'] = form
-
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
         if form.is_valid():
-            body = form.cleaned_data[body]
-            user = form.cleaned_data[user]
-            comment = models.Comment.objects.create(body = body, product=product, user=user)
-        
-            form = CommentForm()
-            context['form'] = form 
-            return self.render_to_response(context=context)
-        
-        return self.render_to_response(context=context)
+            return self.form_valid(form)
+        else:
+            return self.form_invalid
 
-    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.product = self.get_object()
+        self.object.user = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
+class SignUp(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
+        
+        
 
 
 

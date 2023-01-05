@@ -9,6 +9,7 @@ class Product(models.Model):
     content=models.TextField(null=True, blank=True, verbose_name='содержание')#null=True и blank=True делаю поле необязательным к заполнению
     published=models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликовано')#при выводе объявлений мы будем сортировать их по убыванию даты публикации,и индекс здесь очень пригодится.
     img=models.ImageField(upload_to='images', null=True, blank=True, verbose_name='Картика')
+    slug = models.SlugField(max_length=200, null=True, blank=True, db_index=True)
     rubric=models.ForeignKey('Rubric', null=True, on_delete=models.PROTECT, verbose_name='Рубрика')
 
 
@@ -21,7 +22,7 @@ class Product(models.Model):
         """
         Returns the url to access a particular book instance.
         """
-        return reverse('product-detail', args=[str(self.id)])
+        return reverse('detail_product', args=[str(self.id)])
 
     def __str__(self):# Строка для представления объекта Model.
         return self.title
@@ -42,7 +43,7 @@ class Comment(models.Model):
         settings.AUTH_USER_MODEL,
         verbose_name="Пользователь",
         on_delete=models.CASCADE)
-    reply = models.ForeignKey('self',related_name=("replies"), on_delete = models.CASCADE , blank= True ,null=True, verbose_name='ответ')
+    reply = models.ForeignKey('self',related_name="replies", on_delete = models.CASCADE , blank= True ,null=True, verbose_name='ответ')
     product = models.ForeignKey(Product, related_name='comments', on_delete=models.CASCADE, verbose_name='новость')
     body = models.TextField(max_length=120, verbose_name='комментарий')
     created = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')

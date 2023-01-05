@@ -2,27 +2,26 @@
 
 {% block content %}
 <div class="info">
-    <h1>{{product}}</h1>
-    <p class="rubric"><a href="">{{product.rubric}}</p></a>
-    <p>{{ product.content }}</p>
-    <img src="{{ product.img }}" alt="Обложка">
-    <p>{{ product.published }}</p>
+  <h1>{{product}}</h1>
+  <p class="rubric"><a href="">{{product.rubric}}</p></a>
+  <p>{{ product.content }}</p>
+  <img src="{{ product.img }}" alt="Обложка">
+  <p>{{ product.published }}</p>
 
-    <h3>Комментарий</h3>
-    {% if comments %}
-      Comment{{ comments.count|pluralize }}
-      <span>{{ comments.count }}</span>
-      {% for comment in comments %}
-        <strong>{{ comment.user }}</strong> said
+  <h3>{{ product.comments.count }} комментария</h3>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+      <span><button name="comment" type="submit">Отправить</button></span>
+  </form>
+
+    {% if product.comments %}
+      {% for comment in product.comments.all %}
+        <strong>{{ comment.user }}</strong> 
         <p >{{ comment.body }}</p>
         <p ><small>{{ comment.created }}</small></p>
       {% endfor %}
-  
   {% endif %}
-    <form method="POST">
-      {% csrf_token %}
-      {{comment_form.as_p}}
-      <button name="comment" type="submit">Отправить</button>
-  </form>
 </div>
 {% endblock %}

@@ -60,7 +60,7 @@ img {
 }
 
 .space {
-    margin-bottom: 80px;
+    margin-bottom: 70px;
 }
 
 .left {
@@ -83,24 +83,20 @@ li {
     max-width: 480px;
 }
 
-a {
-    color: gold;
-    text-decoration: none;
-}
-
 
 
 .rubric a {
+  
   outline: none;
   text-decoration: none;
   display: inline-block;
   width: 19.5%;
   margin-right: 0.625%;
   text-align: center;
-  color: black;
   border-radius: 28px;
+  color: black;
+  text-decoration: none;
 }
-
 
 
 .rubric a:link, a:visited, a:focus {
@@ -114,4 +110,14 @@ a {
 .rubric a:active {
 
   color: white;
+}
+
+.login {
+    background-color: white;
+    max-width: 500px;
+    margin: auto;
+    border-radius: 28px;
+    padding: 25px;
+    display: flex;
+    margin-top: 50px;
 }
