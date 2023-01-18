@@ -38,6 +38,9 @@ class Rubric(models.Model):
         verbose_name='Рубрика'
         ordering=['name']#сортировка по имени 
 
+    def get_absolute_url(self):
+        return reverse('rubric_detail', args=[str(self.id)])
+
 class Comment(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

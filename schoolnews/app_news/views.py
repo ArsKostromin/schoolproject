@@ -23,7 +23,10 @@ class ProductListView(generic.ListView):
     model = models.Product
     paginate_by = 10
 
-   
+class RubricDetailView(generic.DetailView):
+    model = models.Rubric
+
+
 
 
 class ProductDetailView(FormMixin, generic.DetailView):
@@ -32,7 +35,6 @@ class ProductDetailView(FormMixin, generic.DetailView):
 
     def get_success_url(self):
         return reverse('detail_product', kwargs={'pk': self.get_object().id})
-        #return reverse_lazy('detail_product', kwargs={'pk':self.get_object().id})
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
@@ -54,6 +56,7 @@ class SignUp(CreateView):
     template_name = "registration/signup.html"
         
         
+
 
 
 
