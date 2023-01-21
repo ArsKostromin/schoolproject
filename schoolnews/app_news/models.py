@@ -48,7 +48,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE)
     reply = models.ForeignKey('self',related_name="replies", on_delete = models.CASCADE , blank= True ,null=True, verbose_name='ответ')
     product = models.ForeignKey(Product, related_name='comments', on_delete=models.CASCADE, verbose_name='новость')
-    body = models.TextField(max_length=120, verbose_name='комментарий')
+    body = models.TextField(max_length=120, verbose_name='комментарий', help_text='Введите текст комментария')
     created = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')
     updated = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
@@ -61,4 +61,4 @@ class Comment(models.Model):
         verbose_name = 'комментарий'
         ordering = ('created',)
 
-    
+    help
