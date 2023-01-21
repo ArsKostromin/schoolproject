@@ -129,3 +129,4 @@ MEDIA_IRL = 'media/images/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'users.MyUser'
+

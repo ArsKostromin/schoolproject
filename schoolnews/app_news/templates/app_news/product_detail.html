@@ -9,13 +9,15 @@
   <p>{{ product.published }}</p>
 
   <h3>{{ product.comments.count }} комментария</h3>
-
+  {% if user.is_authenticated %}
   <form method="POST">
     {% csrf_token %}
     {{form.as_p}}
       <span><button name="comment" type="submit">Отправить</button></span>
   </form>
-
+  {% else %}
+  <a href="{% url 'signup' %}"><p>Вы не зарегистрированы. ЗАРЕГИСТРИРОВАТЬСЯ</p></a>
+  {% endif %}
     {% if product.comments %}
       {% for comment in product.comments.all %}
         <strong>{{ comment.user }}</strong> 

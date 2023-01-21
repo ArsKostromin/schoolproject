@@ -29,6 +29,7 @@ class CommentFormTests(TestCase):
         form_data ={'body':'Текст записанный в форму',
                     'product':self.product.id}
         response = self.authorized_client.post(reverse('detail_product', kwargs={'pk': self.product.id}),
+        data=form_data,
         follow = True)
         error_name1 = 'Данные поста не совпадают'
         self.assertEqual(response.status_code, HTTPStatus.OK)
@@ -39,3 +40,5 @@ class CommentFormTests(TestCase):
         error_name2 = 'Пост не добавлен в базу данных'
         self.assertEqual(Comment.objects.count(),
                         comment_count + 1, error_name2)
+
+
