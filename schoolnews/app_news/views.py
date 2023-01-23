@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views import generic
 from . import models
 from .forms import CommentForm
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -12,6 +12,8 @@ from django.views.generic.edit import FormMixin
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
+from django.contrib.auth  import get_user_model
+
 
 # Create your views here.
 
@@ -28,7 +30,6 @@ class RubricDetailView(generic.DetailView):
 
 
 
-
 class ProductDetailView(FormMixin, generic.DetailView):
     model = models.Product
     form_class = CommentForm
@@ -36,6 +37,7 @@ class ProductDetailView(FormMixin, generic.DetailView):
     def get_success_url(self):
         return reverse('detail_product', kwargs={'pk': self.get_object().id})
 
+    
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():

@@ -61,4 +61,4 @@ class Comment(models.Model):
         verbose_name = 'комментарий'
         ordering = ('created',)
 
-    help
+   
