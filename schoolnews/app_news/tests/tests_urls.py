@@ -15,4 +15,16 @@ class StaticurlTests(TestCase):
             error_name: str =f'Ошибка: нед доступа страницы {page}'
             self.assertEqual(response.status_code, HTTPStatus.OK, error_name)
         
+    def test_urls_uses_correct_template(self) -> None:
+        """URL-адрес использует соответствующий шаблон."""
+        templates_url_names: dict = {
+            reverse('index'): 'app_news/aboutUs.html',
+        }
+        for adress, template in templates_url_names.items():
+            with self.subTest(adress = adress):
+                response = self.guest_client.get(adress)
+                error_name: str = f'Ошибка: {adress} ожидал шаблон {template}'
+                self.assertTemplateUsed(response, template, error_name)
+                
     
+

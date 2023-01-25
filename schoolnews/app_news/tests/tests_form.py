@@ -42,17 +42,3 @@ class CommentFormTests(TestCase):
                         comment_count + 1, error_name2)
 
 
-    '''    def test_reddirect_guest_client(self):
-        
-        self.comment = Comment.objects.create(body='Тестовый текст',
-                                        user=self.user,
-                                        product=self.product)
-        form_data = {'body': 'Текст записанный в форму'}
-        response = self.guest_client.post(reverse('detail_product', kwargs={'pk': self.product.id}),
-            data=form_data,
-            follow=True)
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertRedirects(response,
-                             f'/auth/login/?next=/{self.product.id}')
-
-'''

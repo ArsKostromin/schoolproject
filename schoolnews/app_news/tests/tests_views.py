@@ -61,10 +61,3 @@ class ViewsTest(TestCase):
 
 
 
-'''    def test_post_added_correctly(self):
-        """комментарий при создании добавлен корректно"""
-        comment = Comment.objects.create(body='тест текст', product=self.product, user=self.user)
-        response_detail_product = self.authorized_client.get(
-            reverse('detail_product', kwargs={'pk': self.product.id}))
-        detail = response_detail_product.context['page_obj']
-        self.assertIn(comment, detail, 'комментария нет под новостью.')'''
