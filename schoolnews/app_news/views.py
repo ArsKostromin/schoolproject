@@ -23,7 +23,7 @@ def index(request):
 
 class ProductListView(generic.ListView):
     model = models.Product
-    paginate_by = 10
+    paginate_by = 3
 
 class RubricDetailView(generic.DetailView):
     model = models.Rubric

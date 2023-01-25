@@ -1,9 +1,8 @@
 from django.test import TestCase, Client
 from app_news.models import Comment, Product, Rubric
-from schoolnews import settings
 from django.contrib.auth  import get_user_model
-from users.models import MyUser 
 from django.urls import reverse
+from django import forms
 
 # Create your tests here.
 User = get_user_model()
@@ -46,3 +45,26 @@ class ViewsTest(TestCase):
             self.assertEqual(product_text_0[value],expected)
 
 
+    def test_comment_create_page_show_correct_context(self):
+        """Шаблон cоздания комментраия сформирован с правильным контекстом."""
+        response = self.authorized_client.get(
+            reverse('detail_product', kwargs={'pk': self.product.id}))
+        form_fields = {
+        'body': forms.fields.CharField,}
+        for value, expected in form_fields.items():
+            with self.subTest(value=value):
+                form_fields = response.context.get('form').fields.get(value)
+                self.assertIsInstance(form_fields, expected)
+
+
+
+
+
+
+'''    def test_post_added_correctly(self):
+        """комментарий при создании добавлен корректно"""
+        comment = Comment.objects.create(body='тест текст', product=self.product, user=self.user)
+        response_detail_product = self.authorized_client.get(
+            reverse('detail_product', kwargs={'pk': self.product.id}))
+        detail = response_detail_product.context['page_obj']
+        self.assertIn(comment, detail, 'комментария нет под новостью.')'''
