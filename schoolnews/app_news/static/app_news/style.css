@@ -23,6 +23,8 @@ body {
     border-bottom: 1px solid #bbbbbb;
 }
 
+
+
 header h1 {
     height: 55px;
     font-size: 40pt;
@@ -42,9 +44,10 @@ header h1 {
 }
 
 img {
-    width: 400px;
+    width: 750px;
     border-radius: 28px;
     margin-right: 40px;
+
 }
 
 .info {
@@ -53,10 +56,12 @@ img {
     max-width: 1550px;
     margin: auto;
     padding: 25px;
+    font-size:18pt;
 }
 
 .info-text {
-    display: flex;
+    display: block;
+    margin: 0 auto;
 }
 
 .space {
@@ -78,6 +83,9 @@ li {
     /* Убираем маркеры */
   }
 
+  .header a:link, a:visited, a:focus {
+    background: none;
+  }
 
 .rubric {
     max-width: 480px;
@@ -102,6 +110,7 @@ li {
 .rubric a:link, a:visited, a:focus {
   background: yellow;
 }
+
 
 .rubric a:hover {
   background: orange;

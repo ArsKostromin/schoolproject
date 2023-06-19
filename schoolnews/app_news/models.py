@@ -9,7 +9,6 @@ class Product(models.Model):
     content=models.TextField(null=True, blank=True, verbose_name='содержание')#null=True и blank=True делаю поле необязательным к заполнению
     published=models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликовано')#при выводе объявлений мы будем сортировать их по убыванию даты публикации,и индекс здесь очень пригодится.
     img=models.ImageField(upload_to='images', null=True, blank=True, verbose_name='Картика')
-    slug = models.SlugField(max_length=200, null=True, blank=True, db_index=True)
     rubric=models.ForeignKey('Rubric', null=True, on_delete=models.PROTECT, verbose_name='Рубрика')
 
 

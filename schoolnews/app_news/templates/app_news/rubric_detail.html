@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="info">
-    <h1 class="info_text">Издатель: {{ rubric.name }}</h1>
+    <h1 class="info_text">Тег: {{ rubric.name }}</h1>
 </div>
 
 {% for product in rubric.product_set.all %}
@@ -12,7 +12,6 @@
     <div class="info">
         <a href="{{ product.get_absolute_url }}" class=""><h1>{{product}}</h1></a>
         <p class="rubric"><a href="{% url 'rubric_detail' product.rubric.pk %}">{{product.rubric}}</p></a>
-        <p>{{ product.content }}</p>
         <img src="{{ product.img }}" alt="Обложка">
         <p>{{ product.published }}</p>
     </div>
