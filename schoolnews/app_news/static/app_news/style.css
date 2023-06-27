@@ -23,7 +23,10 @@ body {
     border-bottom: 1px solid #bbbbbb;
 }
 
+
+
 header h1 {
+    height: 55px;
     font-size: 40pt;
     text-transform: uppercase;
     text-align: center;
@@ -41,9 +44,10 @@ header h1 {
 }
 
 img {
-    width: 400px;
+    width: 750px;
     border-radius: 28px;
     margin-right: 40px;
+
 }
 
 .info {
@@ -52,14 +56,16 @@ img {
     max-width: 1550px;
     margin: auto;
     padding: 25px;
+    font-size:18pt;
 }
 
 .info-text {
-    display: flex;
+    display: block;
+    margin: 0 auto;
 }
 
 .space {
-    margin-bottom: 80px;
+    margin-bottom: 70px;
 }
 
 .left {
@@ -77,34 +83,34 @@ li {
     /* Убираем маркеры */
   }
 
+  .header a:link, a:visited, a:focus {
+    background: none;
+  }
 
 .rubric {
     max-width: 480px;
 }
 
-a {
-    color: gold;
-    text-decoration: none;
-}
-
 
 
 .rubric a {
+  
   outline: none;
   text-decoration: none;
   display: inline-block;
   width: 19.5%;
   margin-right: 0.625%;
   text-align: center;
-  color: black;
   border-radius: 28px;
+  color: black;
+  text-decoration: none;
 }
-
 
 
 .rubric a:link, a:visited, a:focus {
   background: yellow;
 }
+
 
 .rubric a:hover {
   background: orange;
@@ -113,4 +119,14 @@ a {
 .rubric a:active {
 
   color: white;
+}
+
+.login {
+    background-color: white;
+    max-width: 500px;
+    margin: auto;
+    border-radius: 28px;
+    padding: 25px;
+    display: flex;
+    margin-top: 50px;
 }
