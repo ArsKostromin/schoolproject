@@ -16,19 +16,34 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from rest_framework import routers, serializers, viewsets
+from . import settings
+from users.models import MyUser
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = settings.AUTH_USER_MODEL
+        fields = ['url', 'username', 'email', 'is_staff']
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = MyUser.objects.all()
+    serializer_class = UserSerializer
+
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
 
 
 urlpatterns = [
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('news/', include('app_news.urls')),
     path('admin/', admin.site.urls),
 ]
 
-'''
-from django.views.generic import RedirectView
-urlpatterns += [
-    path('', RedirectView.as_view(url='schoolnews/', permanent=True)),
-]
-'''
+
 from django.conf import settings
 from django.conf.urls.static import static
 
